@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { FaSearchLocation } from 'react-icons/fa';
+import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid'; //console.log(uuidv4())
 import City from './city';
 
 const Search = () => {
@@ -21,7 +22,6 @@ const Search = () => {
                 if( data.cod === '404'){
                     setNoResults(true);
                     setLoading(false);
-                    setWeatherData('')
                 } else {
                     console.log(data);
                     setQuery(data);
@@ -48,7 +48,7 @@ const Search = () => {
                     onChange={(e) => setQuery(e.target.value)}
                 />
                 <button type="submit" className='search-button' onClick={() => {fetchWeather(query)}}>
-                    <FaSearchLocation className='search-icon' />
+                    <FaSearch className='search-icon' />
                 </button>
             </div>
             
@@ -58,7 +58,9 @@ const Search = () => {
                 {hasError && <p>Uh oh, something has gone wrong...</p>}
                 {noResults && <p>Uh oh, no results found</p>}
             </div>)}
-            
+            {noResults && (<div className='weather-card'>
+                <FaMapMarkerAlt /><p>Uh oh, no results found</p>
+            </div>)}
         </div>
     )
 }
