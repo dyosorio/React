@@ -1,15 +1,18 @@
 import React from 'react';
 import { FaTimesCircle } from 'react-icons/fa';
 
-const City = ({ weatherData, list }) => {
+const City = ({ weatherData, list, removeItem, isLoading }) => {
     const { id } = weatherData;
     const items = list;
     console.log(items);
 
     return (
-        items.map((item) => 
+        items.map((item) =>
         <div  className='weather-card' key={item[0]}>
-            <button className='close-button'><FaTimesCircle className='close-icon' /></button>
+            {isLoading && (<div><p>Loading...</p></div>)}
+            <button className='close-button' onClick={()=>removeItem(item[0])}>
+                <FaTimesCircle className='close-icon' />
+            </button>
             <h1 className='city-name'>{item[1]}, {item[2]}</h1>
             <h2>{item[3]}</h2>
             <p>{item[4]}</p>

@@ -47,6 +47,15 @@ const Search = () => {
     }
 
     //remove duplicates functionality = PENDING!
+    /*
+    const filterDuplicate = (id) => {
+        const uniqueValues = list.find((item) => item.id === id);
+    } */
+    //remove individual items
+    const removeItem = (id) => {
+        //return item whose id don't match the passed id
+        setList(list.filter((item) => item[0] !== id))
+    }
 
     return (
         <div className='weather-container'>
@@ -62,11 +71,16 @@ const Search = () => {
                     <FaSearch className='search-icon' />
                 </button>
             </div>
-            
+            {hasError && <p>Uh oh, something has gone wrong...</p>}
+            {noResults && (<div><FaMapMarkerAlt /><p>Uh oh, no results found</p></div>)}
             {weatherData && (
-                <City weatherData={weatherData} list={list}/>
+                <City 
+                weatherData={weatherData} 
+                list={list} 
+                removeItem={removeItem}
+                isLoading={isLoading}
+                />
             )}
-            
         </div>
     )
 }
