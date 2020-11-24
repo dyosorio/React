@@ -35,7 +35,7 @@
 
 .weather-card{
   padding: 2em;
-  border-top: 1px solid #bdc3c7;
+  border: 1px solid #bdc3c7;
 }
 
 .search-button{
@@ -43,6 +43,10 @@
   border-radius: 0 10px 10px 0;
   border: none;
   outline: none;
+}
+
+.icon{
+  font-size: 1.5em;
 }
 
 .city-name{

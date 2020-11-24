@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FaSearchLocation } from 'react-icons/fa';
 import City from './city';
 
 const Search = () => {
@@ -46,7 +47,7 @@ const Search = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                <button type="submit" className='search-button' onClick={() => {fetchWeather(query)}}>🔍</button>
+                <button type="submit" className='search-button' onClick={() => {fetchWeather(query)}}><FaSearchLocation className='icon' /></button>
             </div>
             <div className='weather-card'>
                 {isLoading && <p>Loading...</p>}
