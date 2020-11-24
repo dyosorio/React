@@ -47,14 +47,18 @@ const Search = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                 />
-                <button type="submit" className='search-button' onClick={() => {fetchWeather(query)}}><FaSearchLocation className='icon' /></button>
+                <button type="submit" className='search-button' onClick={() => {fetchWeather(query)}}>
+                    <FaSearchLocation className='search-icon' />
+                </button>
             </div>
-            <div className='weather-card'>
+            
+            {weatherData && (<div className='weather-card'>
                 {isLoading && <p>Loading...</p>}
                 {weatherData && <City weatherData={weatherData} />}
                 {hasError && <p>Uh oh, something has gone wrong...</p>}
                 {noResults && <p>Uh oh, no results found</p>}
-            </div>
+            </div>)}
+            
         </div>
     )
 }
