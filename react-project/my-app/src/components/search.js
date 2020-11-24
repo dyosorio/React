@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { FaSearch, FaMapMarkerAlt } from 'react-icons/fa';
-import { v4 as uuidv4 } from 'uuid'; //console.log(uuidv4())
 import City from './city';
 
 const Search = () => {
     const [query, setQuery] = useState('');
     const [weatherData, setWeatherData] = useState('');
+    const [list, setList] = useState([]);
     const [isLoading, setLoading] = useState(false); 
     const [hasError, setError] = useState(false);
     const [noResults, setNoResults] = useState(false);
@@ -22,13 +22,22 @@ const Search = () => {
                 if( data.cod === '404'){
                     setNoResults(true);
                     setLoading(false);
-                } else {
+                } 
+                else {
                     console.log(data);
                     setQuery(data);
                     setWeatherData(data);
                     setLoading(false);
+                    setNoResults(false);
+                    //add new cities to the list
+                    const description = data.weather[0].description;
+                    const main = data.weather[0].main;
+                    const maxTemp = Math.round(data.main.temp_max);
+                    const minTemp = Math.round(data.main.temp_min);
+                    const item = [data.id, data.name, data.sys.country, main, description, maxTemp, minTemp, data.coord.lat, data.coord.lon];
+                    setList([...list, item])
                 }
-                setQuery('');
+                setQuery('')
             })
             .catch(error => {  
                 setError(true);
@@ -36,6 +45,8 @@ const Search = () => {
             });
         }
     }
+
+    //remove duplicates functionality = PENDING!
 
     return (
         <div className='weather-container'>
@@ -52,15 +63,10 @@ const Search = () => {
                 </button>
             </div>
             
-            {weatherData && (<div className='weather-card'>
-                {isLoading && <p>Loading...</p>}
-                {weatherData && <City weatherData={weatherData} />}
-                {hasError && <p>Uh oh, something has gone wrong...</p>}
-                {noResults && <p>Uh oh, no results found</p>}
-            </div>)}
-            {noResults && (<div className='weather-card'>
-                <FaMapMarkerAlt /><p>Uh oh, no results found</p>
-            </div>)}
+            {weatherData && (
+                <City weatherData={weatherData} list={list}/>
+            )}
+            
         </div>
     )
 }
