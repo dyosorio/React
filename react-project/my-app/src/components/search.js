@@ -46,11 +46,6 @@ const Search = () => {
         }
     }
 
-    //remove duplicates functionality = PENDING!
-    /*
-    const filterDuplicate = (id) => {
-        const uniqueValues = list.find((item) => item.id === id);
-    } */
     //remove individual items
     const removeItem = (id) => {
         //return item whose id don't match the passed id

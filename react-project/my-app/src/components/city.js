@@ -1,13 +1,20 @@
 import React from 'react';
 import { FaTimesCircle } from 'react-icons/fa';
 
-const City = ({ weatherData, list, removeItem, isLoading }) => {
-    const { id } = weatherData;
-    const items = list;
-    console.log(items);
-
+const City = ({ list, removeItem, isLoading }) => {
+    //remove duplicate city input from array
+    //this function will prevent duplicate cities from rendering (add alert!!)
+    function removeDuplicates(list) {
+        let stringArray = list.map(JSON.stringify);
+        let uniqueStringArray = new Set(stringArray);
+        let uniqueArray = Array.from(uniqueStringArray, JSON.parse);
+        return uniqueArray;
+    }
+    
+    const uniqueCities = removeDuplicates(list);
+        
     return (
-        items.map((item) =>
+        uniqueCities.map((item) =>
         <div  className='weather-card' key={item[0]}>
             {isLoading && (<div><p>Loading...</p></div>)}
             <button className='close-button' onClick={()=>removeItem(item[0])}>
