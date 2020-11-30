@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { FaSearch, FaMapMarkerAlt, FaExclamationCircle } from 'react-icons/fa';
 import City from './City'
 import Spinner from './LoadingSpinner'
 
 const API_KEY = 'a54b947f262e2c5b975e64258dc64f90';
 
+const getLocalStorage = () => {
+    let list = localStorage.getItem('list');
+    if (list) {
+      return (list = JSON.parse(localStorage.getItem('list')));
+    } else {
+      return [];
+    }
+  };
+  
+
 const Search = () => {
     const [query, setQuery] = useState('');
     const [weatherData, setWeatherData] = useState({});
-    const [list, setList] = useState([]);
+    const [list, setList] = useState(getLocalStorage()); 
     const [isLoading, setLoading] = useState(false); 
     const [hasError, setError] = useState(false);
     const [noResults, setNoResults] = useState(false);
@@ -53,6 +63,12 @@ const Search = () => {
         //return item whose id don't match the passed id
         setList(list.filter((item) => item[0] !== id))
     }
+
+    //final step: local storage
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list));
+    }, [list]);
+
     return (
         <div className='weather-container'>
             <div className='search-element'>
