@@ -32,18 +32,21 @@ const Search = () => {
                 setLoading(false);
                 setNoResults('City not found'); 
             } else {
+                console.log(data)
                 setQuery(data);
                 setWeatherData(data);
                 setLoading(false);
                 setNoResults(false);
                 setError(false);
                 //add new cities to the list
-                const description = data.weather[0].description;
                 const main = data.weather[0].main;
+                const description = data.weather[0].description;
+                const icon = data.weather[0].icon;
                 const maxTemp = Math.round(data.main.temp_max);
                 const minTemp = Math.round(data.main.temp_min);
-                const item = [data.id, data.name, data.sys.country, main, description, maxTemp, minTemp, data.coord.lat, data.coord.lon];
+                const item = [data.id, data.name, data.sys.country, main, icon, description, maxTemp, minTemp, data.coord.lat, data.coord.lon];
                 setList([...list, item])
+                console.log(item);
             }
             setQuery('');
         } catch (error) {
@@ -64,7 +67,7 @@ const Search = () => {
         setList(list.filter((item) => item[0] !== id))
     }
 
-    //final step: local storage
+    //local storage
     useEffect(() => {
         localStorage.setItem('list', JSON.stringify(list));
     }, [list]);

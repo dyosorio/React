@@ -41,23 +41,30 @@
   font-size: 1.5em;
 }
 .weather-card{
-  padding: 2em;
-  margin-bottom: 1em;
-  border: 1px solid #bdc3c7;
+  margin-bottom: 0;
+}
+.card-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5cd79;
+  width: 100%;
 }
 .city-name{
   padding-bottom: .5em;
-  color: #27ae60;
 }
-.max-temp{
-  color: #e74c3c;
-}
-.min-temp{
-  color: #2980b9;
+.icon{
+  width: 100px;
 }
 .number-data{
-  /*border: 1px solid red;*/
+  background-color: #dfe4ea;
+  border: 1px solid #dfe4ea;
 }
+.number-data p{
+  padding-left: 1em;
+}
+
 .close-button{
   border: none;
   background-color: transparent;
@@ -68,7 +75,6 @@
 .close-icon{
   font-size: 1.5em;
 }
-
 .spinner{
   padding-top: 2em;
   padding-bottom: 2em;
@@ -76,11 +82,9 @@
   margin: auto;
   display: block;
 }
-
 .noResults, .hasError{
   text-align: center;
 }
-
 
 @media only screen and (max-width: 600px) {
   .weather-container{
