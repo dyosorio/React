@@ -32,7 +32,6 @@ const Search = () => {
                 setLoading(false);
                 setNoResults('City not found'); 
             } else {
-                console.log(data)
                 setQuery(data);
                 setWeatherData(data);
                 setLoading(false);
@@ -46,7 +45,6 @@ const Search = () => {
                 const minTemp = Math.round(data.main.temp_min);
                 const item = [data.id, data.name, data.sys.country, main, icon, description, maxTemp, minTemp, data.coord.lat, data.coord.lon];
                 setList([...list, item])
-                console.log(item);
             }
             setQuery('');
         } catch (error) {

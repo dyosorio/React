@@ -1,5 +1,8 @@
 import React from 'react'
 import { FaTimesCircle } from 'react-icons/fa'
+import {
+    Link
+  } from "react-router-dom";
 
 const City = ({ list, removeItem }) => {
     //remove duplicate city from array
@@ -77,7 +80,9 @@ const City = ({ list, removeItem }) => {
                 <FaTimesCircle className='close-icon' />
             </button>
             <div className='card-header'>
+                <Link to="/cityChart">
                 <h1 className='city-name'>{item[1]}, {item[2]}</h1>
+                </Link>
                 <h2>{item[3]}</h2>
                 <img src={returnIcon(item[4])} alt='' className='icon'/><p>{item[5]}</p>
             </div>

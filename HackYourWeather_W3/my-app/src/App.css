@@ -4,6 +4,10 @@
   font-family: 'Barlow', sans-serif;
   color: #2d3436;
 }
+
+ul li{
+  list-style: none;
+}
 .container {
   display: flex;
   align-items: center;
@@ -41,7 +45,7 @@
   font-size: 1.5em;
 }
 .weather-card{
-  margin-bottom: 0;
+  margin-bottom: 2em;
 }
 .card-header{
   display: flex;
