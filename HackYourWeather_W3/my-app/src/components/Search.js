@@ -32,6 +32,7 @@ const Search = () => {
                 setLoading(false);
                 setNoResults('City not found'); 
             } else {
+                console.log(data)
                 setQuery(data);
                 setWeatherData(data);
                 setLoading(false);
@@ -95,6 +96,7 @@ const Search = () => {
                 </div>)}
             {weatherData && (
                 <City 
+                weatherData={weatherData}
                 list={list} 
                 removeItem={removeItem}
                 isLoading={isLoading}

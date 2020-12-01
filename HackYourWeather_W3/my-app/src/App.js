@@ -1,12 +1,12 @@
 import './App.css';
 import Search from './components/Search';
-import { FaHome } from 'react-icons/fa';
 import CityChart from './components/CityChart';
+import { FaHome } from 'react-icons/fa';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 
 function App() {
@@ -19,19 +19,15 @@ function App() {
               <Link to="/"><FaHome /></Link>
             </li>
             <li>
-              <Link to="/cityChart">CityChart</Link>
+              <Link to="/:id">CityChart</Link>
             </li>
           </ul>
         </nav>
 
         <Switch>
-          <Route exact path="/">
-            <Search />
-          </Route>
-          <Route path="/cityChart">
-            <CityChart />
-          </Route> 
-        </Switch>
+          <Route path="/" exact component={Search} />
+          <Route path="/:cityId" exact component={CityChart} />
+        </Switch> 
       </div>
     </Router>
   );
