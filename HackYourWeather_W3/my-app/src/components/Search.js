@@ -14,7 +14,6 @@ const getLocalStorage = () => {
     }
   };
   
-
 const Search = () => {
     const [query, setQuery] = useState('');
     const [weatherData, setWeatherData] = useState({});
@@ -32,7 +31,6 @@ const Search = () => {
                 setLoading(false);
                 setNoResults('City not found'); 
             } else {
-                console.log(data)
                 setQuery(data);
                 setWeatherData(data);
                 setLoading(false);

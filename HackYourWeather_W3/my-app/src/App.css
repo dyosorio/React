@@ -69,6 +69,11 @@ ul li{
   padding-left: 1em;
 }
 
+.home-icon{
+  text-align: right;
+  font-size: 2em;
+}
+
 .close-button{
   border: none;
   background-color: transparent;
@@ -92,6 +97,7 @@ ul li{
 
 .chart-container{
   text-align: center;
+  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
